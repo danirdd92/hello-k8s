@@ -2,7 +2,7 @@ const Koa = require('koa');
 const serve = require('koa-static');
 
 const app = new Koa();
-const port = process.env.PROT || 3000;
+const port = process.env.PORT || 3000;
 
 app.use(serve(__dirname + '/static'));
 
