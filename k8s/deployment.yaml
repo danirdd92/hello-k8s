@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webserver
+  labels:
+    app: webserver
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: webserver
+  template:
+    metadata:
+      labels:
+        app: webserver
+    spec:
+      volumes:
+        - name: skull-crusher-boom-boom-pew-pew
+          persistentVolumeClaim:
+            claimName: webapp-pvc
+
+      containers:
+      - name: app
+        image: danirdd92/hello-k8s:latest
+        ports:
+        - containerPort: 3000
+        volumeMounts:
+          - name: skull-crusher-boom-boom-pew-pew
+            mountPath: /data
